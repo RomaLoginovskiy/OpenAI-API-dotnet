@@ -42,10 +42,22 @@ namespace OpenAI_API.Images
 		[JsonProperty("response_format"), JsonConverter(typeof(ImageResponseFormat.ImageResponseJsonConverter))]
 		public ImageResponseFormat ResponseFormat { get; set; }
 
-		/// <summary>
-		/// Cretes a new, empty <see cref="ImageGenerationRequest"/>
-		/// </summary>
-		public ImageGenerationRequest()
+
+		[JsonProperty("model"), JsonConverter(typeof(ImageGenerationModel.ImageGenerationModelConverter))]
+        public ImageGenerationModel Model { get; set; }
+
+		//TODO: hd only for now 
+		[JsonProperty("quality")]
+		public string Quality { get; set; } = "hd";
+
+		//TODO: how to ignore property from serialization if no value is present
+        [JsonProperty("style")]
+        public string Style { get; set; }
+
+        /// <summary>
+        /// Cretes a new, empty <see cref="ImageGenerationRequest"/>
+        /// </summary>
+        public ImageGenerationRequest()
 		{
 
 		}
@@ -58,16 +70,19 @@ namespace OpenAI_API.Images
 		/// <param name="size">The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.</param>
 		/// <param name="user">A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.</param>
 		/// <param name="responseFormat">The format in which the generated images are returned. Must be one of url or b64_json.</param>
+		/// <param name="model"></param>
 		public ImageGenerationRequest(
 			string prompt,
-			int? numOfImages = 1,
+            ImageGenerationModel model,
+            int? numOfImages = 1,		
 			ImageSize size = null,
 			string user = null,
 			ImageResponseFormat responseFormat = null)
 		{
 			this.Prompt = prompt;
 			this.NumOfImages = numOfImages;
-			this.User = user;
+            this.Model = model;
+            this.User = user;
 			this.Size = size ?? ImageSize._1024;
 			this.ResponseFormat = responseFormat ?? ImageResponseFormat.Url;
 		}

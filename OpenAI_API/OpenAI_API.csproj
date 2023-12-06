@@ -18,8 +18,8 @@
 		</PackageReleaseNotes>
 		<PackageId>OpenAI</PackageId>
 		<Version>1.7.2</Version>
-		<AssemblyVersion>1.7.2.0</AssemblyVersion>
-		<FileVersion>1.7.2.0</FileVersion>
+		<AssemblyVersion>1.7.2.1</AssemblyVersion>
+		<FileVersion>1.7.2.1</FileVersion>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
@@ -37,6 +37,8 @@
 
 	<PropertyGroup>
 		<PackageIcon>nuget_logo.png</PackageIcon>
+		<BaseOutputPath>bin\nuget</BaseOutputPath>
+		<PackageOutputPath />
 	</PropertyGroup>
 
 	<ItemGroup>
